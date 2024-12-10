@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+<style>
+    body{
+    font-family: Arial, sans-serif;
+
+    }
+    h1{
+     text-align: center;
+
+    }
+    .update{
+    background-color: yellow;
+    color : block;
+
+    }
+    .delete {
+     background-color: red;
+    color: white;
+    }
+    .delete:hover{
+
+    transform : scale(1.1);
+    cursor: pointer;
+    }
+    .update:hover{
+
+    transform : scale(1.1);
+    cursor: pointer;
+    }
+    .table{
+    margin: 10px
+     width: 100%;
+    border: 2px solid ;
+<!--    display:grid;-->
+<!--    place-items:center;-->
+<!--    height:50vh;-->
+<!--    margin:0;-->
+
+    }
+    td{
+    text-align: center;
+
+</style>
+</head>
+<body>
+{% extends 'crudapp/base.html'%}
+{%block content %}
+    <h1>Employee Dashboad </h1>
+ <a href="{% url 'views.add_views' %}"  ><button type="button">Add Employee</button></a>
+
+    <table border="1" class="table">
+      <thead>
+         <th>  Sys.No </th>
+         <th>  Name </th>
+         <th>  Email </th>
+         <th>   Phone</th>
+         <th>   Address </th>
+         <th>Action</th>
+
+     </thead>
+    <tr>
+
+    {% for Em in employee %}
+         <td> {{Em.SNo}}</td>
+         <td> {{Em.name}}</td>
+         <td> {{Em.Email}}</td>
+         <td>{{Em.phone}}</td>
+         <td> {{Em.Address}}</td>
+         <td><a href="/update/{{Em.id}}" ><button type="button" class="update" >Update </button></a>
+            <a href="/delete/{{Em.id}}" ><button type="button" class="delete">Delete</button></a></td>
+    </tr>
+    {% endfor %}
+
+    </table>
+
+    {% endblock %}
+</body>
+</html>
